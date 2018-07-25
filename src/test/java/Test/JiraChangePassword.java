@@ -16,8 +16,8 @@ public class JiraChangePassword {
     ChangePasswordPopUp changePassword = new ChangePasswordPopUp(driver);
 
     driver.get("http://jira.hillel.it:8080/login.jsp");
-    loginPage.enterUserName("Valentyn_Usatyi");
-    loginPage.enterPassword("10293847");
+    loginPage.enterUserName("webinar5");
+    loginPage.enterPassword("webinar5");
     loginPage.clickSendButton();
 
     if(!loginPage.onPage()){
@@ -28,9 +28,9 @@ public class JiraChangePassword {
     changePassword.clickOnfulHeaderButtonId();
     changePassword.clickOnProfileButton();
     changePassword.clickOnChangePassLink();
-    changePassword.enterCurrentPass("10293847");
-    changePassword.enterNewPass("10293847");
-    changePassword.enterNewPassForConfirm("10293847");
+    changePassword.enterCurrentPass("webinar5");
+    changePassword.enterNewPass("webinar5");
+    changePassword.enterNewPassForConfirm("webinar5");
     changePassword.clickOnupdateButton();
     }
 }
