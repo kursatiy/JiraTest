@@ -23,7 +23,6 @@ public class CheckEditPreferences {
     @Test(priority = 1)
     public void Login() {
         String pageTitle = "/html/head/title";
-        //String pageTitle = "//*[@title = 'System Dashboard - Hillel IT School JIRA']";
         open("http://jira.hillel.it:8080/login.jsp");
         LoginPageObject loginPage = new LoginPageObject();
         loginPage.LoginToJira("webinar5", "webinar5");
@@ -33,10 +32,10 @@ public class CheckEditPreferences {
 
     @Test(priority = 2)
     public void checkEditPreferences() {
-
+        String updateUserPreferences = "//*[@class='jira-dialog-heading']/*";
         EditPreferencesObject checkEditPreferences = new EditPreferencesObject();
         checkEditPreferences.checkEditPreferencesButton();
-        assertEquals($(By.xpath("//*[@class='jira-dialog-heading']/*")).getText(), "Update User Preferences");
+        assertEquals($(By.xpath(updateUserPreferences)).getText(), "Update User Preferences");
 
     }
 }
