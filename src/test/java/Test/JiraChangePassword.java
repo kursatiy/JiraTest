@@ -2,20 +2,21 @@ package Test;
 
 import Pages.ChangePasswordPopUp;
 import Pages.LoginToJiraPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import com.codeborne.selenide.Configuration;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import static com.codeborne.selenide.Selenide.open;
 
 public class JiraChangePassword {
 @Test
     public void JiraChangePassword() {
-    System.setProperty("webdriver.chrome.driver", "C:\\server\\chromedriver.exe");
-    WebDriver driver = new ChromeDriver();
-    LoginToJiraPage loginPage = new LoginToJiraPage(driver);
-    ChangePasswordPopUp changePassword = new ChangePasswordPopUp(driver);
+    LoginToJiraPage loginPage = new LoginToJiraPage();
+    ChangePasswordPopUp changePassword = new ChangePasswordPopUp();
 
-    driver.get("http://jira.hillel.it:8080/login.jsp");
+    Configuration.browser = "chrome";
+
+    open("http://jira.hillel.it:8080");
     loginPage.enterUserName("webinar5");
     loginPage.enterPassword("webinar5");
     loginPage.clickSendButton();
