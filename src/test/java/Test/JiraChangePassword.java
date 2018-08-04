@@ -5,7 +5,6 @@ import Pages.LoginToJiraPage;
 import com.codeborne.selenide.Configuration;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import static com.codeborne.selenide.Selenide.open;
 
 public class JiraChangePassword {
