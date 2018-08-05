@@ -27,7 +27,5 @@ public class UpdateUserPreferencesPage {
             $(By.xpath(pageSizeXpath)).sendKeys(intPageSizeValue);
             $(By.xpath(updateButtonXpath)).click();
         }
-
-
     }
 
