@@ -2,8 +2,11 @@ package tests;
 
 import Pages.EditPreferencesObject;
 import Pages.LoginPageObject;
+import Pages.ProfilePageObject;
+import Pages.UpdateUserPreferencesPage;
 import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.By;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -27,17 +30,36 @@ public class CheckEditPreferences {
         LoginPageObject loginPage = new LoginPageObject();
         loginPage.LoginToJira("webinar5", "webinar5");
         assertEquals($(By.xpath(pageTitle)).innerText(), "System Dashboard - Hillel IT School JIRA");
-
     }
 
     @Test(priority = 2)
+    public void OpenProfileWindow(){
+        ProfilePageObject openUserProfile = new ProfilePageObject();
+        openUserProfile.openProfileWindow();
+    }
+    @Test(priority = 3)
     public void checkEditPreferences() {
         String updateUserPreferences = "//*[@class='jira-dialog-heading']/*";
         EditPreferencesObject checkEditPreferences = new EditPreferencesObject();
-        checkEditPreferences.checkEditPreferencesButton();
+        checkEditPreferences.clickOnEditPreferencesButton();
         assertEquals($(By.xpath(updateUserPreferences)).getText(), "Update User Preferences");
-
     }
+    @Test(priority = 4)
+    public void checkPageSize(){
+
+        String pageSizeViewMode = "//*[@id = 'up-p-pagesize']";
+        UpdateUserPreferencesPage updateUserPreferencesPage = new UpdateUserPreferencesPage();
+        updateUserPreferencesPage.pageSize("100");
+        assertEquals($(By.xpath(pageSizeViewMode)).getText(), "100");
+    }
+    @AfterClass
+    public void returnPageSizeValue(){
+        EditPreferencesObject editPreferences = new EditPreferencesObject();
+        editPreferences.clickOnEditPreferencesButton();
+        UpdateUserPreferencesPage updateUserPreferencesPage = new UpdateUserPreferencesPage();
+        updateUserPreferencesPage.pageSize("50");
+    }
+
 }
 
 
