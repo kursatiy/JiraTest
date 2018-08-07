@@ -54,15 +54,15 @@ public class CheckEditPreferences {
         updateUserPreferencesPage.pageSize("100");
         assertEquals($(By.xpath(pageSizeViewMode)).waitUntil(Condition.visible, 3000).getText(), "100");
         //assertEquals($(By.xpath(successMessage)).getValue(), "blabla");
-
-
     }
+
+
     @AfterTest
     public void returnPageSizeValue(){
         EditPreferencesObject editPreferences = new EditPreferencesObject();
         editPreferences.clickOnEditPreferencesButton();
-        UpdateUserPreferencesPage updateUserPreferencesPage2 = new UpdateUserPreferencesPage();
-        updateUserPreferencesPage2.pageSize("50");
+        UpdateUserPreferencesPage updateUserPreferencesPage = new UpdateUserPreferencesPage();
+        updateUserPreferencesPage.pageSize("50");
     }
 
 }
