@@ -7,6 +7,7 @@ import Pages.UpdateUserPreferencesPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.By;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -48,15 +49,15 @@ public class CheckEditPreferences {
     public void checkPageSize(){
 
         String pageSizeViewMode = "//*[@id = 'up-p-pagesize']";
-        String successMessage = "//*[@id='userprofile-notify']/text()";
+        String successMessage = "//*[@id='userprofile-notify']/text()[normalize-space()]";
         UpdateUserPreferencesPage updateUserPreferencesPage = new UpdateUserPreferencesPage();
         updateUserPreferencesPage.pageSize("100");
         assertEquals($(By.xpath(pageSizeViewMode)).waitUntil(Condition.visible, 3000).getText(), "100");
-        assertEquals($(By.xpath(successMessage)).getText(), "blabla");
+        //assertEquals($(By.xpath(successMessage)).getValue(), "blabla");
 
 
     }
-    //@AfterClass
+    @AfterTest
     public void returnPageSizeValue(){
         EditPreferencesObject editPreferences = new EditPreferencesObject();
         editPreferences.clickOnEditPreferencesButton();
