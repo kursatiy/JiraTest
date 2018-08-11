@@ -15,9 +15,8 @@ public class LoginSteps {
         open("http://jira.hillel.it:8080/login.jsp");
 
         LoginPageObject loginPage = new LoginPageObject();
-        //loginPage.LoginToJira("webinar5", "webinar5");
-        loginPage.LoginToJira("Dmitry_Prikota", "638Jawa638!!!");
-
+        loginPage.LoginToJira("webinar5", "webinar5");
+        
         ProfilePageObject openUserProfile = new ProfilePageObject();
         openUserProfile.openProfileWindow();
 
