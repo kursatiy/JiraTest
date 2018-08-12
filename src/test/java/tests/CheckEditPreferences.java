@@ -4,6 +4,7 @@ import Pages.EditPreferencesObject;
 import Pages.LoginPageObject;
 import Pages.ProfilePageObject;
 import Pages.UpdateUserPreferencesPage;
+import Properties.ConfigProperties;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.By;
@@ -16,20 +17,28 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.testng.Assert.assertEquals;
 
 public class CheckEditPreferences {
+    String login;
+    String password;
+    String jiraUrl;
 
 
     @BeforeClass
     public void setup() {
         Configuration.remote = "http://localhost:4444/wd/hub";
         Configuration.browser = "chrome";
+        ConfigProperties config = new ConfigProperties();
+        jiraUrl = config.LoginAndPasswordFromConfigFile("jiraUrl");
+        login = config.LoginAndPasswordFromConfigFile("login");
+        password = config.LoginAndPasswordFromConfigFile("password");
+
     }
 
     @Test(priority = 1)
     public void Login() {
         String pageTitle = "/html/head/title";
-        open("http://jira.hillel.it:8080/login.jsp");
+        open(jiraUrl);
         LoginPageObject loginPage = new LoginPageObject();
-        loginPage.LoginToJira("webinar5", "webinar5");
+        loginPage.LoginToJira(login, password);
         assertEquals($(By.xpath(pageTitle)).innerText(), "System Dashboard - Hillel IT School JIRA");
     }
 
@@ -46,12 +55,13 @@ public class CheckEditPreferences {
         assertEquals($(By.xpath(updateUserPreferences)).getText(), "Update User Preferences");
     }
     @Test(priority = 4)
-    public void checkPageSize(){
+    public void checkPageSize() throws InterruptedException {
 
-        String pageSizeViewMode = "//*[@id = 'up-p-pagesize']";
         String successMessage = "//*[@id='userprofile-notify']/text()[normalize-space()]";
         UpdateUserPreferencesPage updateUserPreferencesPage = new UpdateUserPreferencesPage();
         updateUserPreferencesPage.pageSize("100");
+        String pageSizeViewMode = "//*[@id = 'up-p-pagesize']";
+        Thread.sleep(1000);
         assertEquals($(By.xpath(pageSizeViewMode)).waitUntil(Condition.visible, 3000).getText(), "100");
         //assertEquals($(By.xpath(successMessage)).getValue(), "blabla");
     }
