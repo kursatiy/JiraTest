@@ -1,4 +1,4 @@
-package tests;
+package Test;
 
 import Pages.EditPreferencesObject;
 import Pages.LoginPageObject;
@@ -27,9 +27,9 @@ public class CheckEditPreferences {
         Configuration.remote = "http://localhost:4444/wd/hub";
         Configuration.browser = "chrome";
         ConfigProperties config = new ConfigProperties();
-        jiraUrl = config.LoginAndPasswordFromConfigFile("jiraUrl");
-        login = config.LoginAndPasswordFromConfigFile("login");
-        password = config.LoginAndPasswordFromConfigFile("password");
+        jiraUrl = config.DataFromPropertiesFile("jiraUrl");
+        login = config.DataFromPropertiesFile("login");
+        password = config.DataFromPropertiesFile("password");
 
     }
 
@@ -43,10 +43,11 @@ public class CheckEditPreferences {
     }
 
     @Test(priority = 2)
-    public void OpenProfileWindow(){
+    public void OpenProfileWindow() {
         ProfilePageObject openUserProfile = new ProfilePageObject();
         openUserProfile.openProfileWindow();
     }
+
     @Test(priority = 3)
     public void checkEditPreferences() {
         String updateUserPreferences = "//*[@class='jira-dialog-heading']/*";
@@ -54,6 +55,7 @@ public class CheckEditPreferences {
         checkEditPreferences.clickOnEditPreferencesButton();
         assertEquals($(By.xpath(updateUserPreferences)).getText(), "Update User Preferences");
     }
+
     @Test(priority = 4)
     public void checkPageSize() throws InterruptedException {
 
@@ -68,7 +70,7 @@ public class CheckEditPreferences {
 
 
     @AfterTest
-    public void returnPageSizeValue(){
+    public void returnPageSizeValue() {
         EditPreferencesObject editPreferences = new EditPreferencesObject();
         editPreferences.clickOnEditPreferencesButton();
         UpdateUserPreferencesPage updateUserPreferencesPage = new UpdateUserPreferencesPage();

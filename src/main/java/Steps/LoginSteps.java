@@ -11,12 +11,12 @@ public class LoginSteps {
     String login;
     String password;
 
-    public void loginToJira(){
+    public void loginToJira() {
         Configuration.remote = "http://localhost:4444/wd/hub";
         Configuration.browser = "chrome";
         ConfigProperties config = new ConfigProperties();
-        login = config.LoginAndPasswordFromConfigFile("login");
-        password = config.LoginAndPasswordFromConfigFile("password");
+        login = config.DataFromPropertiesFile("login");
+        password = config.DataFromPropertiesFile("password");
         open("http://jira.hillel.it:8080/login.jsp");
         LoginPageObject loginPage = new LoginPageObject();
         loginPage.LoginToJira(login, password);

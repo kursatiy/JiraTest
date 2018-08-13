@@ -16,7 +16,7 @@ public class EditUserAvatar {
         String userAvatar = "//*[@id=\"user-avatar-picker\"]/div[1]";
 
         LoginSteps editUserAvatar = new UserAvatar();
-        editUserAvatar.LoginToJira();
+        editUserAvatar.loginToJira();
         ((UserAvatar) editUserAvatar).clickOnUserAvatar();
 
         assertEquals($(By.xpath(userAvatar)).getText(), "Select a User Avatar");

@@ -2,6 +2,7 @@ package Test;
 
 import Pages.UserAvatar;
 import Steps.LoginSteps;
+import Steps.ProfileSteps;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
@@ -18,7 +19,9 @@ public class UploadNewAvatar {
         String valIdAvatar;
 
         LoginSteps uploadNewAvatar = new UserAvatar();
-        uploadNewAvatar.LoginToJira();
+        uploadNewAvatar.loginToJira();
+        ProfileSteps profile = new ProfileSteps();
+        profile.OpenUserProfile();
         valIdAvatar = $(By.xpath(idAvatar)).toString();
         ((UserAvatar) uploadNewAvatar).UploadNewAvatar();
 

@@ -11,7 +11,7 @@ public class ConfigProperties {
     Properties prop = new Properties();
     InputStream input = null;
 
-    public String LoginAndPasswordFromConfigFile(String loginOrPasswordOrJiraUrl) {
+    public String DataFromPropertiesFile(String loginOrPasswordOrJiraUrl) {
 
 
         try {
