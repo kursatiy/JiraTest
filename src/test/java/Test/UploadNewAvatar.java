@@ -19,7 +19,7 @@ public class UploadNewAvatar {
         String valIdAvatar;
 
         LoginSteps uploadNewAvatar = new UserAvatar();
-        uploadNewAvatar.loginToJira();
+        uploadNewAvatar.LoginToJira();
         ProfileSteps profile = new ProfileSteps();
         profile.OpenUserProfile();
         valIdAvatar = $(By.xpath(idAvatar)).toString();
