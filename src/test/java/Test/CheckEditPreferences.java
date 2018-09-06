@@ -26,7 +26,7 @@ public class CheckEditPreferences {
         openUserProfile.openProfileWindow();
     }
 
-    @Test(priority = 3)
+    @Test(priority = 1)
     public void checkEditPreferences() {
         String updateUserPreferences = "//*[@class='jira-dialog-heading']/*";
         EditPreferencesObject checkEditPreferences = new EditPreferencesObject();
